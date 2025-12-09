@@ -96,7 +96,58 @@ class LinkedList:
                 else:
                     self.head = new_node
                 n.pref = new_node
+    
+    def delete_begin(self):
+        if self.head is None:
+            print('LL is empty')
+            return
+        if self.head.nref is None:
+            self.head = None
+        else:
+            n = self.head
+            self.head = n.nref
+            self.head.pref = None
+    
+    def delete_end(self):
+        if self.head is None:
+            print('LL is empty')
+            return
+        if self.head.pref is None and self.head.nref is None:
+            self.head = None
+        else:
+            n = self.head
+            while n.nref.nref is not None:
+                n = n.nref
+            n.nref = None
+    
+    def delete_value(self, x):
+        if self.head is None:
+            print('LL is empty')
+            return
+        if self.head.nref is None and self.head.data == x:
+            self.head = None
+            return
+        
+        if self.head.data == x:
+            self.head = self.head.nref
+            self.head.pref = None
+            return 
+        n = self.head
+        while n.nref is not None:
+            if n.data == x:
+                break
+            n = n.nref
+        if n.nref is not None:
+            n.pref.nref  = n.nref
+            n.nref.pref = n.pref
 
+        else:
+            if n.data == x:
+                n.pref.nref = None
+            else:
+                print('given node is not present in LL')
+
+            
 
 
 
@@ -115,5 +166,9 @@ LL.add_after(3,10)
 LL.add_after(22,15)
 LL.add_before(99,3)
 LL.add_before(550,5)
+LL.delete_begin()
+LL.delete_end()
+LL.delete_value(99)
 LL.forward_traversal()
+
 # LL.backward_traversal()
