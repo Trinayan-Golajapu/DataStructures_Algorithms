@@ -6,7 +6,7 @@ def max_sum(nums):
         curr_sum = curr_sum + i
         if curr_sum > global_sum:
             global_sum = curr_sum
-        elif curr_sum < 0:
+        if curr_sum < 0:
             curr_sum = 0
     return global_sum
     
