@@ -42,3 +42,5 @@ for i in range(num):
 mergesort(list1)
 print(list1)
 
+# TODO trace the code
+
